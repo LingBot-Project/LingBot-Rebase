@@ -12,6 +12,10 @@ public class Group {
         return groupId;
     }
 
+    public void sendMessage(String str) {
+        // TODO: 2023-02-19 1:42
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
