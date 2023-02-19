@@ -8,6 +8,7 @@ import java.util.Objects;
 public class User {
     private final long userId;
     private PermissionGroup permissionGroup;
+    private long lastAliveTime = System.currentTimeMillis();
     public User(long id) {
         this(id, PermissionGroup.DEFAULT_GROUP);
     }
@@ -24,6 +25,15 @@ public class User {
     public void setPermissionGroup(PermissionGroup permissionGroup) {
         if (permissionGroup == null) return;
         this.permissionGroup = permissionGroup;
+        updateAlive();
+    }
+
+    public boolean isDead(long now) {
+        return now - lastAliveTime > 60 * 60 * 1000;
+    }
+
+    public void updateAlive() {
+        lastAliveTime = System.currentTimeMillis();
     }
 
     @Override

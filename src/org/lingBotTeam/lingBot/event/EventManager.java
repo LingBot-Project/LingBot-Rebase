@@ -39,7 +39,7 @@ public class EventManager {
                 registry.invoke(event);
             } catch (InvocationTargetException | IllegalAccessException e) {
                 Throwable t = e.getCause();
-                LingBot.getInstance().getMessageManager().MANAGER_GROUP.sendMessage("Exception occluding " + t.getMessage() + "\n" + t.toString());
+                LingBot.getInstance().getMessageManager().MANAGER_GROUP.sendMessage("Exception occluding " + t.getMessage() + "\n" + t);
             }
         }
     }

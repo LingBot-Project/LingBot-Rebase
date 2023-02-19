@@ -1,21 +1,51 @@
-import org.lingBotTeam.lingBot.utils.configs.IniConfig;
-import org.lingBotTeam.lingBot.utils.configs.ini.Section;
+import org.lingBotTeam.lingBot.utils.string.StringDeDuplicator;
+import org.lingBotTeam.lingBot.utils.string.WrappedMessage;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.Random;
 
 public class Test {
-    public static void main(String[] args) throws IOException {
-        File file = new File(Test.class.getResource("test.ini").getFile());
-        IniConfig config = new IniConfig(file);
-        Section section = config.getSection("Section1");
-//        System.out.println(section.getProperty("key1"));
-//        System.out.println(section.getProperty("key2"));
-//        System.out.println(section.getProperty("key3"));
-        System.out.println(config);
-//        section = config.getSection("Section2");
-//        System.out.println(section.getProperty("abs"));
-//        section = config.getSection("Section3");
-//        System.out.println(section.getProperty("key1"));
+    public static void main(String[] args) {
+        testMessage("你好");
+        testMessage("你好呀");
+        testMessage("你好呀LoL");
+        testMessage("什么？这是压缩毛巾！");
+        testMessage("什么？这不是饼干，这是压缩毛巾！");
+        testMessage("你好你好你好");
+        testMessage("你好你好你好你好你好你好你好");
+        testMessage("你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好");
+        testMessage("好好好对对对是是是");
+        for (int i = 0; i < 20; i++) {
+            testMessage(randomString(1000 + new Random().nextInt(1000)));
+        }
+    }
+
+    static void testMessage(String str) {
+        WrappedMessage message = new WrappedMessage(str);
+        double time = nano();
+        double result = StringDeDuplicator.calculateSingleMessage(message);
+        double deltaTime = nano() - time;
+        println(message.getMessage());
+        println("  length: " + message.getMessage().length());
+        println("  result: " + result);
+        println("  floor:  " + (int) Math.floor(result));
+        println(" used ms: " + deltaTime);
+    }
+
+    static void println(String str) {
+        System.out.println(str);
+    }
+
+    static double nano() {
+        return System.nanoTime() / 1e6D;
+    }
+
+    static String randomString(int length) {
+        char[] chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(chars[random.nextInt(chars.length)]);
+        }
+        return sb.toString();
     }
 }
