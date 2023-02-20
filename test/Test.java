@@ -1,5 +1,5 @@
 import org.lingBotTeam.lingBot.utils.string.StringDeDuplicator;
-import org.lingBotTeam.lingBot.utils.string.WrappedMessage;
+import org.lingBotTeam.lingBot.utils.string.message.SimpleMessage;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class Test {
     }
 
     static void testMessage(String str) {
-        WrappedMessage message = new WrappedMessage(str);
+        SimpleMessage message = new SimpleMessage(str);
         double time = nano();
         double result = StringDeDuplicator.calculateSingleMessage(message);
         double deltaTime = nano() - time;

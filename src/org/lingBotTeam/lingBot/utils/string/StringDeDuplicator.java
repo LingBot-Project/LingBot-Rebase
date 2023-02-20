@@ -1,13 +1,16 @@
 package org.lingBotTeam.lingBot.utils.string;
 
+import org.lingBotTeam.lingBot.utils.string.message.IMessage;
+
 public final class StringDeDuplicator {
     /**
      * Calculate similar texts
+     * (什么寄吧算法 我不知道, 反正随便糊的 但他还真能跑, 而且和预期差不了多远)
      * @author siuank
      * @param message the message
      * @return gone for the message
      */
-    public static double calculateSingleMessage(WrappedMessage message) {
+    public static double calculateSingleMessage(IMessage message) {
         String str = message.getMessage().replaceAll("\n", "");
         int length = str.length();
         char[] chars = str.toCharArray();
@@ -33,8 +36,7 @@ public final class StringDeDuplicator {
                 ddAA[x + 1][0] = perChar * count;
             }
         }
-        for (int x = 0; x < ddAA.length; x++) {
-            double[] ds = ddAA[x];
+        for (double[] ds : ddAA) {
             double total = 0;
             for (double d : ds) {
                 total += d;

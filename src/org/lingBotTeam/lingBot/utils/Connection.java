@@ -16,7 +16,7 @@ public class Connection {
     public static final String WEBSOCKET_PORT = "5701";
     public static final String HTTP_PORT = "5700";
     public WebSocket webSocket;
-    private final LingBot bot;
+    protected final LingBot bot;
 
     public Connection(LingBot lbIn) {
         String wsUrl = String.format("ws://%s:%s/all?qq=%s", CONNECTION_IP, WEBSOCKET_PORT, lbIn.getBotQNumber().toString());
